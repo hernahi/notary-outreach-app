@@ -1,0 +1,63 @@
+import { NavLink, Outlet } from "react-router-dom";
+import { logout, getUser } from "../utils/auth";
+
+export default function Dashboard({ onLogout }) {
+  const currentUser = getUser();
+
+  return (
+    <div className="min-h-screen flex bg-gray-50">
+      {/* Sidebar */}
+      <aside className="w-64 bg-blue-600 text-white flex flex-col">
+        <div className="p-6 text-center font-bold text-xl border-b border-blue-500">
+          Notary Dashboard
+        </div>
+        <nav className="flex-1 p-4 space-y-2">
+          <NavLink
+            to="leads"
+            className={({ isActive }) =>
+              `block px-4 py-2 rounded hover:bg-blue-500 transition ${
+                isActive ? "bg-blue-700" : ""
+              }`
+            }
+          >
+            Leads
+          </NavLink>
+          <NavLink
+            to="campaigns"
+            className={({ isActive }) =>
+              `block px-4 py-2 rounded hover:bg-blue-500 transition ${
+                isActive ? "bg-blue-700" : ""
+              }`
+            }
+          >
+            Campaigns
+          </NavLink>
+          <NavLink
+            to="messages"
+            className={({ isActive }) =>
+              `block px-4 py-2 rounded hover:bg-blue-500 transition ${
+                isActive ? "bg-blue-700" : ""
+              }`
+            }
+          >
+            Messages
+          </NavLink>
+        </nav>
+        <button
+          onClick={() => {
+            logout();
+            onLogout();
+          }}
+          className="m-4 px-4 py-2 bg-white text-blue-600 rounded hover:bg-blue-100 transition"
+        >
+          Logout
+        </button>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1">
+        <Outlet />
+      </main>
+    </div>
+  );
+}
