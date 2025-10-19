@@ -1,23 +1,15 @@
-import { messages } from "../data/messages";
-import { getUser } from "../utils/auth";
+import React from "react";
+import messages from "../data/messages.json";
 
 export default function Messages() {
-  const currentUser = getUser();
-  const visibleMessages =
-    currentUser.role === "admin"
-      ? messages
-      : messages.filter((m) => m.owner === currentUser.email);
-
   return (
-    <div className="p-8">
-      <h2 className="text-2xl font-bold mb-6">Messages</h2>
+    <div>
+      <h1 className="text-2xl font-bold mb-6">Messages</h1>
       <ul className="space-y-4">
-        {visibleMessages.map((m) => (
-          <li
-            key={m.id}
-            className="bg-white rounded-xl shadow p-4 hover:shadow-lg transition"
-          >
-            <strong>{m.from}:</strong> {m.content}
+        {messages.map((m) => (
+          <li key={m.id} className="bg-white p-4 rounded-md shadow">
+            <h3 className="font-semibold">{m.sender}</h3>
+            <p className="text-gray-700">{m.content}</p>
           </li>
         ))}
       </ul>

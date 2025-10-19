@@ -1,0 +1,4 @@
+[
+  { "id": 1, "sender": "Alice", "content": "Message content 1" },
+  { "id": 2, "sender": "Bob", "content": "Message content 2" }
+]

@@ -1,30 +1,15 @@
-import { leads } from "../data/leads";
-import { getUser } from "../utils/auth";
+import React from "react";
+import leads from "../data/leads.json";
 
 export default function Leads() {
-  const currentUser = getUser();
-  const visibleLeads =
-    currentUser.role === "admin"
-      ? leads
-      : leads.filter((lead) => lead.owner === currentUser.email);
-
   return (
-    <div className="p-8">
-      <h2 className="text-2xl font-bold mb-6">Leads</h2>
+    <div>
+      <h1 className="text-2xl font-bold mb-6">Leads</h1>
       <ul className="space-y-4">
-        {visibleLeads.map((lead) => (
-          <li
-            key={lead.id}
-            className="bg-white rounded-xl shadow p-4 hover:shadow-lg transition flex justify-between"
-          >
-            <span>{lead.name}</span>
-            <span
-              className={`font-semibold ${
-                lead.status === "Completed" ? "text-green-600" : "text-yellow-600"
-              }`}
-            >
-              {lead.status}
-            </span>
+        {leads.map((l) => (
+          <li key={l.id} className="bg-white p-4 rounded-md shadow">
+            <h2 className="text-lg font-semibold">{l.name}</h2>
+            <p className="text-gray-600">Status: {l.status}</p>
           </li>
         ))}
       </ul>

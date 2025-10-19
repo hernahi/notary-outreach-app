@@ -16,13 +16,18 @@ export function validateUser(email, password) {
   return null;
 }
 
-// Get current user
+// Get current user (persistent)
 export function getUser() {
-  const user = localStorage.getItem("user");
-  return user ? JSON.parse(user) : null;
+  const storedUser = localStorage.getItem("user");
+  return storedUser ? JSON.parse(storedUser) : null;
 }
 
 // Logout user
 export function logout() {
   localStorage.removeItem("user");
+}
+
+// Check if logged in
+export function isAuthenticated() {
+  return !!getUser();
 }
