@@ -11,7 +11,7 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/Card";
 
 // Mock data
 import leads from "../data/leads.json";
